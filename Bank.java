@@ -9,6 +9,12 @@ class BankAdd{
         AccountNo = ANo;
     }
 
+    BankAdd(BankAdd B)
+    {
+        Balance = B.Balance;
+        AccountNo = B.AccountNo;
+    }
+
     public void BankProcess(Scanner sc)
     {
         while (true) {
@@ -42,8 +48,7 @@ class BankAdd{
                     }
                     break;
                 case 4:
-                    System.exit(0);
-                    break;
+                    return;
                 
                 default:
                     System.out.println("Enter Valid Process Number");
@@ -67,6 +72,8 @@ public class Bank {
             System.exit(0);
         }
         BankAdd B1 = new BankAdd(Balances, AccountNo);
+        BankAdd B2 = new BankAdd(B1);
         B1.BankProcess(sc);
+        B2.BankProcess(sc);
     }    
 }
