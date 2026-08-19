@@ -13,11 +13,6 @@ public class RomanToDecimal {
     public int Todecimal(String str) {
         str = str.toLowerCase();
         int n = str.length(), i = 0, result = 0;
-        String str2 = new String();
-        for (i = n - 1; i >= 0; i--) {
-            str2 += str.charAt(i);
-        }
-        i = 0;
         while (i < n) {
             switch (str.charAt(i)) {
                 case 'i':
