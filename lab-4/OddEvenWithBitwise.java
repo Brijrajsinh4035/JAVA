@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class OddEvenWithBitwise {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
         OddEvenWithBitwise o1 = new OddEvenWithBitwise();
+        int n = sc.nextInt();
         o1.main(n);
     }
 
