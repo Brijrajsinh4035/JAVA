@@ -2,7 +2,7 @@ import java.util.*;
 
 class BankAdd {
     private double Balance;
-    public int AccountNo;
+    private int AccountNo;
     static String BankName = "Kotak Bank";
     static double rate;
     private int ATMPin;
@@ -19,6 +19,7 @@ class BankAdd {
     BankAdd(BankAdd B) {
         Balance = B.Balance;
         AccountNo = B.AccountNo;
+        ATMPin = B.ATMPin;
     }
 
     public void BankProcess(Scanner sc) {
@@ -37,17 +38,32 @@ class BankAdd {
                 case 2:
                     System.out.println("Enter Deposit Amount");
                     double D = sc.nextDouble();
-                    Balance += D;
-                    System.out.println("Total Balance: " + Balance);
+                    if (D > 0) {
+                        Balance += D;
+                        System.out.println("Total Balance: " + Balance);
+                    } else {
+                        System.out.println("Deposite amount should be Positive");
+                    }
                     break;
                 case 3:
-                    System.out.println("Enter Amount For Withdraw");
-                    double w = sc.nextDouble();
-                    if (Balance - w < 10000) {
-                        System.out.println("Rs 10000 Minimum Balance is required Withdraw is Rejected");
+                    System.out.println("Enter Pin");
+                    int usepin = sc.nextInt();
+                    if (this.ATMPin != usepin) {
+                        System.out.println("Enter Valid Pin");
                     } else {
-                        Balance -= w;
-                        System.out.println("Total Balance: " + Balance);
+                        System.out.println("Enter Amount For Withdraw");
+                        double w = sc.nextDouble();
+                        if (w > 0) {
+                            if (Balance - w < 10000) {
+                                System.out.println("Rs 10000 Minimum Balance is required Withdraw is Rejected");
+                            } else {
+                                Balance -= w;
+                                System.out.println("Total Balance: " + Balance);
+                            }
+                        }
+                        else{
+                            System.out.println("Withdraw Amount Should Be Positive");
+                        }
                     }
                     break;
                 case 4:
@@ -69,8 +85,8 @@ class BankAdd {
         System.out.println("Interes Rate: " + rate);
     }
 
-    class ATMPin {
-    
+    class ATMPinManager {
+
         public void SetPin(Scanner sc) {
             System.out.println("enter Atm pin");
             ATMPin = sc.nextInt();
@@ -95,13 +111,13 @@ public class Bank {
             System.exit(0);
         }
         BankAdd B1 = new BankAdd(Balances, AccountNo);
-        //BankAdd B2 = new BankAdd(B1);
-        BankAdd.ATMPin A1 = B1.new ATMPin();
+        // BankAdd B2 = new BankAdd(B1);
+        BankAdd.ATMPinManager A1 = B1.new ATMPinManager();
         A1.SetPin(sc);
         A1.GetPin();
         BankAdd.setrate(sc);
         BankAdd.getrate();
         B1.BankProcess(sc);
-        //B2.BankProcess(sc);
+        // B2.BankProcess(sc);
     }
 }
