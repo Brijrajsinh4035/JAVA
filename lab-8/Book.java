@@ -22,11 +22,7 @@ class BookInsert {
     private double price;
 
     public BookInsert() {
-<<<<<<< HEAD
         this.title = null;
-=======
-        this.title = "null";
->>>>>>> 2e8c6407aca19cb9b2dc2706ef2119d13d2a9715
         this.price = 500.00;
     }
 
