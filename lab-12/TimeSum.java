@@ -29,7 +29,8 @@ class Time {
     }
 
     public Time(int hour, int minute, int second) {
-        if (hour > 12 || minute > 60 || second > 60) {
+        if (hour < 1 || hour > 12 || minute < 0 || minute > 59 || second < 0 || second > 59) {
+            System.out.println("Invalid time entered, defaulting to 0:0:0");
             return;
         }
         this.hour = hour;
@@ -42,7 +43,7 @@ class Time {
         t3.second = t1.second + t2.second;
         t3.minute = t1.minute + t2.minute;
         t3.hour = t1.hour + t2.hour;
-        while (t3.second > 60 || t3.minute > 60 || t3.hour > 12) {
+        while (t3.second >= 60 || t3.minute >= 60 || t3.hour >= 12) {
             if (t3.second >= 60) {
                 int s = t3.second - 60;
                 t3.second = s;
